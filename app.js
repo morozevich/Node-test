@@ -5,6 +5,9 @@ const sequelize = new Sequelize('postgres://carlos:ada1815@localhost:5432/test')
 var express = require('express');
 var app = express();
 
+var service = require('./service');
+app.use('/', service);
+
 let connect = sequelize.authenticate();
 
 connect.then(() => {
