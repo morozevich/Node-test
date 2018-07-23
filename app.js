@@ -5,9 +5,14 @@ const sequelize = new Sequelize('postgres://carlos:ada1815@localhost:5432/test')
 var express = require('express');
 var app = express();
 
-
 let connect = sequelize.authenticate();
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+connect.then(() => {
+    app.listen(3000, function () {
+        console.log('Example app listening on port 3000!');
+    });
+});
+
+connect.catch(err => {
+    console.error('Unable to connect to the database:', err);
 });
