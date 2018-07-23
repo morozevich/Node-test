@@ -7,6 +7,11 @@ var app = express();
 
 var service = require('./service');
 app.use('/', service);
+var bodyParser = require('body-parser');
+app.use(bodyParser.text({ type: 'text/html' }))
+app.use(bodyParser.text({ type: 'text/xml' }))
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+app.use(bodyParser.json({ type: 'application/json' }))
 
 let connect = sequelize.authenticate();
 

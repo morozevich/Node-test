@@ -27,4 +27,15 @@ router.get('/:id', function (req, res) {
     });
 });
 
+router.post('/', function (req, res) {
+    console.log(req.body);
+    // let book = models.Book.findById(req.params.id);
+    // book.then(result => {
+    //     res.send(result);
+    // });
+    // book.catch(error => {
+    //     res.send("Error..");
+    // });
+});
+
 module.exports = router;
