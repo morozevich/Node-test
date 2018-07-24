@@ -1,17 +1,18 @@
 const Sequelize = require('sequelize');
 // The Uri settings is postgres://{user}:{pass}@{host}:{post}/{dbname}
-const sequelize = new Sequelize('postgres://carlos:ada1815@localhost:5432/test');
+const config = require('./config/config.json');
+// Set to enviroment (for example development).
+const enviroment = config.development;
+const sequelize = new Sequelize(`${enviroment.dialect}://${enviroment.username}:${enviroment.password}@${enviroment.host}:5432/${enviroment.database}`);
 
 var express = require('express');
 var app = express();
 
 var service = require('./service');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/', service);
-var bodyParser = require('body-parser');
-app.use(bodyParser.text({ type: 'text/html' }))
-app.use(bodyParser.text({ type: 'text/xml' }))
-app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
-app.use(bodyParser.json({ type: 'application/json' }))
 
 let connect = sequelize.authenticate();
 
