@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-// The Uri settings is postgres://{user}:{pass}@{host}:{post}/{dbname}
 const config = require('./config/config.json');
 // Set to enviroment (for example development).
 const enviroment = config.development;
